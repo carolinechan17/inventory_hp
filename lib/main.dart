@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:inventory_hp/bloc/add_color/add_color_bloc.dart';
 import 'package:inventory_hp/bloc/add_phone_item/add_phone_bloc.dart';
+import 'package:inventory_hp/bloc/delete_color/delete_color_bloc.dart';
 import 'package:inventory_hp/bloc/delete_phone_item/delete_phone_bloc.dart';
 import 'package:inventory_hp/bloc/fetch_color/fetch_color_bloc.dart';
 import 'package:inventory_hp/bloc/fetch_phone_item/fetch_phone_bloc.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => UpdatePhoneBloc()),
           BlocProvider(create: (context) => AddColorBloc()),
           BlocProvider(create: (context) => DeletePhoneBloc()),
+          BlocProvider(create: (context) => DeleteColorBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -21,6 +21,8 @@ Future<void> uploadPhoneItems(List<Map<String, dynamic>> phones) async {
         }).eq('id', item['id']);
       }
     }
+
+    return;
   } catch (e) {
     throw Exception(e);
   }
@@ -31,6 +33,8 @@ Future<void> deletePhoneItem(int id) async {
     final supabase = Supabase.instance.client;
 
     await supabase.from('phones').delete().eq('id', id);
+
+    return;
   } catch (e) {
     throw Exception(e);
   }
@@ -47,6 +51,8 @@ Future<void> updateOnePhoneItem(Map<String, dynamic> phone) async {
       'color': phone['color'],
       'imei': phone['imei'],
     }).eq('id', phone['id']);
+
+    return;
   } catch (e) {
     throw Exception(e);
   }
@@ -76,6 +82,8 @@ Future<void> updatePhoneItems(List<Map<String, dynamic>> phones) async {
         }).eq('id', id);
       }
     }
+
+    return;
   } catch (e) {
     throw Exception(e);
   }
@@ -105,6 +113,18 @@ Future<PhoneColor> addPhoneColor(String color) async {
     ]).select();
 
     return PhoneColor.fromJson(response.first);
+  } catch (e) {
+    throw Exception(e);
+  }
+}
+
+Future<void> deletePhoneColor(int id) async {
+  try {
+    final supabase = Supabase.instance.client;
+
+    await supabase.from('phone_colors').delete().eq('id', id);
+
+    return;
   } catch (e) {
     throw Exception(e);
   }
