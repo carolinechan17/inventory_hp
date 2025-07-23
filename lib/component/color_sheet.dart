@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventory_hp/bloc/add_color/add_color_bloc.dart';
 import 'package:inventory_hp/bloc/add_color/add_color_event.dart';
+import 'package:inventory_hp/bloc/delete_color/delete_color_bloc.dart';
+import 'package:inventory_hp/bloc/delete_color/delete_color_event.dart';
 import 'package:inventory_hp/bloc/fetch_color/fetch_color_bloc.dart';
 import 'package:inventory_hp/bloc/fetch_color/fetch_color_event.dart';
 import 'package:inventory_hp/bloc/fetch_color/fetch_color_state.dart';
@@ -95,8 +97,33 @@ class _ColorSheetState extends State<ColorSheet> {
                           itemCount: state.colors.length,
                           itemBuilder: (context, index) {
                             return ListTile(
+                              contentPadding:
+                                  EdgeInsets.symmetric(horizontal: 4),
                               title: Text(
                                   capitalize(state.colors[index].color ?? '')),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<DeleteColorBloc>()
+                                        .add(DeleteColor(
+                                            id: state.colors[index].id ?? 0,
+                                            onFail: (err) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                      content: Text(err)));
+                                            },
+                                            onSuccess: () {
+                                              setState(() {
+                                                context
+                                                    .read<FetchColorBloc>()
+                                                    .add(GetColors());
+                                              });
+                                            }));
+                                  },
+                                  icon: Icon(
+                                    CupertinoIcons.trash,
+                                    color: Colors.red,
+                                  )),
                               onTap: () {
                                 Navigator.pop(context, state.colors[index]);
                               },

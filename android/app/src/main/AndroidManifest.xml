@@ -3,7 +3,6 @@
 
     <application
         android:label="Inventory Hp"
-        android:name="Inventory Hp"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
