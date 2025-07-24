@@ -149,52 +149,63 @@ class _HomePageState extends State<HomePage> {
       }),
     );
   }
-}
 
-PreferredSizeWidget appBar(BuildContext context) {
-  return AppBar(
-    backgroundColor: Colors.indigo,
-    foregroundColor: Colors.white,
-    title: Text(
-      'Inventory Handphone',
-      style: TextStyle(fontWeight: FontWeight.bold),
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {
-          showMenu(
-              color: Colors.white,
-              context: context,
-              position: RelativeRect.fromLTRB(
-                  MediaQuery.of(context).size.width - 20,
-                  12,
-                  20,
-                  MediaQuery.of(context).size.height - 12),
-              items: [
-                PopupMenuItem(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => FormPembelianPage()));
-                  },
-                  child: Text(
-                    'Pembelian',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ),
-                PopupMenuItem(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => FormPenjualanPage()));
-                  },
-                  child: Text(
-                    'Penjualan',
-                    style: TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ]);
-        },
-        icon: Icon(CupertinoIcons.add_circled_solid),
+  PreferredSizeWidget appBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.indigo,
+      foregroundColor: Colors.white,
+      title: Text(
+        'Inventory Handphone',
+        style: TextStyle(fontWeight: FontWeight.bold),
       ),
-    ],
-  );
+      actions: [
+        IconButton(
+          onPressed: () {
+            showMenu(
+                color: Colors.white,
+                context: context,
+                position: RelativeRect.fromLTRB(
+                    MediaQuery.of(context).size.width - 20,
+                    12,
+                    20,
+                    MediaQuery.of(context).size.height - 12),
+                items: [
+                  PopupMenuItem(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FormPembelianPage()));
+                    },
+                    child: Text(
+                      'Pembelian',
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FormPenjualanPage()));
+                    },
+                    child: Text(
+                      'Penjualan',
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ]);
+          },
+          icon: Icon(CupertinoIcons.add_circled_solid),
+        ),
+        IconButton(
+          onPressed: () {
+            setState(() {
+              fetchPhoneItem();
+            });
+          },
+          icon: Icon(
+            CupertinoIcons.arrow_clockwise,
+            color: Colors.white,
+          ),
+        )
+      ],
+    );
+  }
 }

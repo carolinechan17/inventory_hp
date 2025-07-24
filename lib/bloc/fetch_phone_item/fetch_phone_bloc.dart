@@ -41,7 +41,8 @@ class FetchPhoneBloc extends Bloc<FetchPhoneEvent, FetchPhoneState> {
     });
 
     on<GetPhones>((event, emit) async {
-      emit(state.copyWith(isSubmitting: true, isFail: false, isSuccess: false));
+      emit(state.copyWith(
+          isSubmitting: true, isFail: false, isSuccess: false, items: []));
 
       try {
         final response = await fetchAllPhoneItems();
