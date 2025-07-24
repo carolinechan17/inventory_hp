@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 height: 16,
               ),
               Expanded(
-                child: state.searchResults.isNotEmpty
+                child: searchController.text.isNotEmpty
                     ? ListView.builder(
                         itemCount: state.searchResults.length,
                         itemBuilder: (context, i) {
