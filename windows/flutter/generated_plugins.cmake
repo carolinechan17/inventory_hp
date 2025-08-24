@@ -6,6 +6,8 @@ list(APPEND FLUTTER_PLUGIN_LIST
   app_links
   cloud_firestore
   firebase_core
+  print_bluetooth_thermal
+  printing
   url_launcher_windows
 )
 

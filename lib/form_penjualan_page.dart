@@ -8,6 +8,7 @@ import 'package:inventory_hp/bloc/update_phone_item/update_phone_event.dart';
 import 'package:inventory_hp/component/custom_textformfield.dart';
 import 'package:inventory_hp/component/phone_sheet.dart';
 import 'package:inventory_hp/data/model/phone_item.dart';
+import 'package:inventory_hp/receipt_page.dart';
 
 class FormPenjualanPage extends StatefulWidget {
   FormPenjualanPage({super.key});
@@ -233,18 +234,25 @@ class _FormPenjualanPageState extends State<FormPenjualanPage> {
                 'imei': imei[i],
               });
             }
-            context.read<UpdatePhoneBloc>().add(UpdatePhone(
-                items: items,
-                onSuccess: () {
-                  context.read<FetchPhoneBloc>().add(GetPhones());
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Berhasil menyimpan data penjualan')));
-                  Navigator.pop(context);
-                },
-                onFail: (err) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(err)));
-                }));
+            // context.read<UpdatePhoneBloc>().add(UpdatePhone(
+            //     items: items,
+            //     onSuccess: () {
+            //       context.read<FetchPhoneBloc>().add(GetPhones());
+            //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //           content: Text('Berhasil menyimpan data penjualan')));
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //           builder: (context) => ReceiptPage(
+            //                 soldItems: items,
+            //               )));
+            //     },
+            //     onFail: (err) {
+            //       ScaffoldMessenger.of(context)
+            //           .showSnackBar(SnackBar(content: Text(err)));
+            //     }));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ReceiptPage(
+                      soldItems: items,
+                    )));
           },
           child: Text(
             'Simpan',
