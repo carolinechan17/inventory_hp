@@ -263,7 +263,7 @@ class _FormPembelianPageState extends State<FormPembelianPage> {
                 onSuccess: () {
                   context.read<FetchPhoneBloc>().add(GetPhones());
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Berhasil menyimpan data pembelian')));
+                      content: Text('Berhasil melakukan update data')));
                   Navigator.pop(context);
                 },
                 onFail: (err) {
