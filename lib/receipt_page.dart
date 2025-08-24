@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_hp/component/custom_textformfield.dart';
 import 'package:inventory_hp/extension/pdf_generator.dart';
+import 'package:inventory_hp/extension/printer.dart';
 import 'package:printing/printing.dart';
 
 class ReceiptPage extends StatefulWidget {
@@ -59,8 +60,33 @@ class _ReceiptPageState extends State<ReceiptPage> {
             SizedBox(
               height: 20,
             ),
+            InkWell(
+              onTap: () async {
+                try {
+                  await printToBluetooth(
+                      widget.soldItems, priceController.text);
+                } catch (error) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(error.toString())));
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 12),
+                decoration: BoxDecoration(
+                    color: Colors.indigo,
+                    borderRadius: BorderRadius.circular(8)),
+                alignment: Alignment.center,
+                child: Text('Print',
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
                 child: PdfPreview(
+              allowPrinting: false,
               canChangeOrientation: false,
               canDebug: false,
               build: (format) async =>
