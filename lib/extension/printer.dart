@@ -47,8 +47,15 @@ Future<void> printToBluetooth(
 
     // Items
     for (var item in items) {
+      final List<Map<String, bool>> imeiList =
+          List<Map<String, bool>>.from(item['imei']);
+
+      final List<String> trueImeis = imeiList
+          .where((map) => map.values.first == true)
+          .map((map) => map.keys.first)
+          .toList();
       bytes += generator.text(
-        "${item['name']} ${item['color']}",
+        '${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
         styles: PosStyles(align: PosAlign.left),
       );
     }

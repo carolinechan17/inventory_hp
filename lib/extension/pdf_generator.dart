@@ -37,11 +37,22 @@ Future<Uint8List> buildReceiptPdf(
                       fontWeight: pw.FontWeight.normal, fontSize: 10)),
             ),
             pw.Text('\n'),
-            ...items.map((item) => pw.Text('${item['name']} ${item['color']}',
-                style: pw.TextStyle(
-                    fontWeight: pw.FontWeight.normal,
-                    fontSize: 10,
-                    height: 12))),
+            ...items.map((item) {
+              final List<Map<String, bool>> imeiList =
+                  List<Map<String, bool>>.from(item['imei']);
+
+              final List<String> trueImeis = imeiList
+                  .where((map) => map.values.first == true)
+                  .map((map) => map.keys.first)
+                  .toList();
+
+              return pw.Text(
+                  '${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
+                  style: pw.TextStyle(
+                      fontWeight: pw.FontWeight.normal,
+                      fontSize: 10,
+                      height: 12));
+            }),
             pw.Divider(),
             pw.Center(
                 child: pw.Text("TOTAL BAYAR : Rp $formattedPrice",
