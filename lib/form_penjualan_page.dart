@@ -234,21 +234,25 @@ class _FormPenjualanPageState extends State<FormPenjualanPage> {
                 'imei': imei[i],
               });
             }
-            context.read<UpdatePhoneBloc>().add(UpdatePhone(
-                items: items,
-                onSuccess: () {
-                  context.read<FetchPhoneBloc>().add(GetPhones());
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Berhasil melakukan update data')));
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ReceiptPage(
-                            soldItems: items,
-                          )));
-                },
-                onFail: (err) {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text(err)));
-                }));
+            // context.read<UpdatePhoneBloc>().add(UpdatePhone(
+            //     items: items,
+            //     onSuccess: () {
+            //       context.read<FetchPhoneBloc>().add(GetPhones());
+            //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //           content: Text('Berhasil melakukan update data')));
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //           builder: (context) => ReceiptPage(
+            //                 soldItems: items,
+            //               )));
+            //     },
+            //     onFail: (err) {
+            //       ScaffoldMessenger.of(context)
+            //           .showSnackBar(SnackBar(content: Text(err)));
+            //     }));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ReceiptPage(
+                      soldItems: items,
+                    )));
           },
           child: Text(
             'Simpan',

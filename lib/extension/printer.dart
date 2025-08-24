@@ -28,22 +28,52 @@ Future<void> printToBluetooth(
     final formattedPrice = formatNumber(int.parse(price.isEmpty ? '0' : price));
 
     // Header
+    bytes += generator.text("\n\n\n");
     bytes += generator.text("HENS PONSEL",
-        styles: PosStyles(align: PosAlign.center, bold: true));
+        styles: PosStyles(
+          align: PosAlign.center,
+          bold: true,
+          height: PosTextSize.size3,
+          width: PosTextSize.size3,
+        ));
     bytes += generator.text("Jalan Sudirman No. 193",
-        styles: PosStyles(align: PosAlign.center));
+        styles: PosStyles(
+          align: PosAlign.center,
+          height: PosTextSize.size2,
+          width: PosTextSize.size2,
+        ));
     bytes += generator.text("Air Putih, Batu Bara",
-        styles: PosStyles(align: PosAlign.center));
+        styles: PosStyles(
+          align: PosAlign.center,
+          height: PosTextSize.size2,
+          width: PosTextSize.size2,
+        ));
     bytes += generator.text("Sumut 21256",
-        styles: PosStyles(align: PosAlign.center));
-    bytes += generator.hr();
+        styles: PosStyles(
+          align: PosAlign.center,
+          height: PosTextSize.size2,
+          width: PosTextSize.size2,
+        ));
+    bytes += generator.text(
+      hr58(),
+      styles: PosStyles(
+        align: PosAlign.left,
+        bold: true,
+        width: PosTextSize.size1, // make sure it's normal width
+        height: PosTextSize.size1,
+      ),
+    );
 
     // Title
     bytes += generator.text("Struk Penjualan",
-        styles: PosStyles(align: PosAlign.center, bold: true));
+        styles: PosStyles(
+          align: PosAlign.center,
+          bold: true,
+          height: PosTextSize.size2,
+          width: PosTextSize.size2,
+        ));
     bytes += generator.text(date, styles: PosStyles(align: PosAlign.center));
-
-    bytes += generator.feed(1);
+    bytes += generator.text('\n');
 
     // Items
     for (var item in items) {
@@ -55,18 +85,31 @@ Future<void> printToBluetooth(
           .map((map) => map.keys.first)
           .toList();
       bytes += generator.text(
-        '${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
+        '${trueImeis.length} ${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
         styles: PosStyles(align: PosAlign.left),
       );
+      bytes += generator.text('\n');
     }
 
-    bytes += generator.hr();
+    bytes += generator.text(
+      hr58(),
+      styles: PosStyles(
+        align: PosAlign.left,
+        bold: true,
+        width: PosTextSize.size1, // make sure it's normal width
+        height: PosTextSize.size1,
+      ),
+    );
 
     // Total
-    bytes += generator.text("TOTAL BAYAR : Rp $formattedPrice",
-        styles: PosStyles(align: PosAlign.center, bold: true));
+    bytes += generator.text("TOTAL BAYAR: Rp $formattedPrice",
+        styles: PosStyles(
+          align: PosAlign.center, bold: true,
+          width: PosTextSize.size2, // make sure it's normal width
+          height: PosTextSize.size2,
+        ));
 
-    bytes += generator.feed(1);
+    bytes += generator.text('\n');
 
     // Footer
     bytes += generator.text(
@@ -74,7 +117,8 @@ Future<void> printToBluetooth(
       styles: PosStyles(align: PosAlign.center),
     );
 
-    bytes += generator.feed(3);
+    bytes += generator.text("\n\n\n");
+    bytes += generator.text('');
 
     await PrintBluetoothThermal.writeBytes(bytes);
   } else {

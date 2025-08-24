@@ -47,7 +47,7 @@ Future<Uint8List> buildReceiptPdf(
                   .toList();
 
               return pw.Text(
-                  '${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
+                  '${trueImeis.length} ${item['name']} ${item['color']} \n- ${trueImeis.join('\n- ')}',
                   style: pw.TextStyle(
                       fontWeight: pw.FontWeight.normal,
                       fontSize: 10,

@@ -18,3 +18,5 @@ String formatNumber(int number) {
 
   return buffer.toString().split('').reversed.join();
 }
+
+String hr58() => List.filled(32, '-').join();
