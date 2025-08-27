@@ -11,7 +11,7 @@ import 'package:inventory_hp/data/model/phone_item.dart';
 import 'package:inventory_hp/receipt_page.dart';
 
 class FormPenjualanPage extends StatefulWidget {
-  FormPenjualanPage({super.key});
+  const FormPenjualanPage({super.key});
 
   @override
   State<FormPenjualanPage> createState() => _FormPenjualanPageState();
