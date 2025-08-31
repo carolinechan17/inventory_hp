@@ -209,8 +209,12 @@ class _FormPembelianPageState extends State<FormPembelianPage> {
                         .then((value) {
                       if (value != null) {
                         setState(() {
-                          imeiControllers[index].text =
-                              '${imeiControllers[index].text}, $value';
+                          if (imeiControllers[index].text.isEmpty) {
+                            imeiControllers[index].text = value;
+                          } else {
+                            imeiControllers[index].text =
+                                '${imeiControllers[index].text}, $value';
+                          }
                         });
                       }
                     });

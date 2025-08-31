@@ -81,19 +81,24 @@ class _CameraScannerPageState extends State<CameraScannerPage> {
       body: Stack(
         children: [
           CameraPreview(controller!),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              color: Colors.black54.withAlpha(125),
-              height: double.infinity,
-              width: double.infinity,
-              child: Text(
-                'Sedang dalam proses scan',
-                style: const TextStyle(color: Colors.white, fontSize: 18),
-                textAlign: TextAlign.center,
+          if (isLoading)
+            Align(
+              alignment: Alignment.center,
+              child: Container(
+                alignment: Alignment.center,
+                color: Colors.black54.withAlpha(125),
+                height: double.infinity,
+                width: double.infinity,
+                child: Text(
+                  'Sedang dalam proses scan',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          )
+            )
         ],
       ),
       floatingActionButton: FloatingActionButton(
