@@ -154,45 +154,6 @@ class _ReceiptPageState extends State<ReceiptPage> {
                   this.controller = controller;
                 },
               ),
-              // InkWell(
-              //   onTap: () async {
-              //     try {
-              //       await printToBluetooth(
-              //           widget.soldItems, priceController.text);
-              //     } catch (error) {
-              //       if (context.mounted) {
-              //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //             margin: EdgeInsets.only(
-              //                 bottom: MediaQuery.of(context).size.height - 100,
-              //                 left: 10,
-              //                 right: 10),
-              //             behavior: SnackBarBehavior.floating,
-              //             content: Text(error.toString())));
-              //       }
-              //     }
-              //   },
-              //   child: Container(
-              //     width: double.infinity,
-              //     padding: EdgeInsets.symmetric(vertical: 12),
-              //     decoration: BoxDecoration(
-              //         color: Colors.indigo,
-              //         borderRadius: BorderRadius.circular(8)),
-              //     alignment: Alignment.center,
-              //     child: Text('Print',
-              //         style: TextStyle(color: Colors.white, fontSize: 18)),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 20,
-              // ),
-              // Expanded(
-              //     child: PdfPreview(
-              //   allowPrinting: false,
-              //   canChangeOrientation: false,
-              //   canDebug: false,
-              //   build: (format) async =>
-              //       buildReceiptPdf(widget.soldItems, priceController.text),
-              // )),
             ],
           ),
         ),
