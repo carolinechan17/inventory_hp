@@ -6,13 +6,14 @@ import 'package:inventory_hp/bloc/add_phone_item/add_phone_bloc.dart';
 import 'package:inventory_hp/bloc/add_phone_item/add_phone_event.dart';
 import 'package:inventory_hp/bloc/fetch_phone_item/fetch_phone_bloc.dart';
 import 'package:inventory_hp/bloc/fetch_phone_item/fetch_phone_event.dart';
+import 'package:inventory_hp/camera_scanner_page.dart';
 import 'package:inventory_hp/component/color_sheet.dart';
 import 'package:inventory_hp/component/custom_textformfield.dart';
 import 'package:inventory_hp/data/model/phone_color.dart';
 import 'package:inventory_hp/data/model/phone_item.dart';
 
 class FormPembelianPage extends StatefulWidget {
-  FormPembelianPage({super.key});
+  const FormPembelianPage({super.key});
 
   @override
   State<FormPembelianPage> createState() => _FormPembelianPageState();
@@ -37,8 +38,6 @@ class _FormPembelianPageState extends State<FormPembelianPage> {
   }
 
   List<PhoneItem> searchItem(String searchQuery) {
-    print('💚 $searchQuery');
-
     if (searchQuery.isEmpty) return [];
 
     final item = context.read<FetchPhoneBloc>().state.items;
@@ -199,6 +198,35 @@ class _FormPembelianPageState extends State<FormPembelianPage> {
                 validator: (value) {
                   return value!.isEmpty ? 'IMEI is required' : null;
                 },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: InkWell(
+                  onTap: () async {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(
+                            builder: (context) => CameraScannerPage()))
+                        .then((value) {
+                      if (value != null) {
+                        setState(() {
+                          imeiControllers[index].text =
+                              '${imeiControllers[index].text}, $value';
+                        });
+                      }
+                    });
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 48,
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                        color: Colors.indigo,
+                        borderRadius: BorderRadius.circular(8)),
+                    alignment: Alignment.center,
+                    child: Text('Scan IMEI',
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                  ),
+                ),
               ),
             ],
           ),
