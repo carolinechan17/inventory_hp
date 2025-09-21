@@ -144,6 +144,17 @@ class _ReceiptPageState extends State<ReceiptPage> {
                   ),
                   SizedBox(height: 20),
                   Text(
+                    'Facebook: Hens Phonsel',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    '082164267722',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
                     "**Terima kasih**",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20),
